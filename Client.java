@@ -5,11 +5,11 @@ package appSondaggi;
  *
  * @author jcm
  */
-public class Server {
+public class Client {
     //Attributi
 
     //Costruttore
-    public Server(){
+    public Client(){
 
     }
 
@@ -17,6 +17,6 @@ public class Server {
 
     //Main
     public static void main(String[] args){
-        new Server();
+        new Client();
     }
 }
