@@ -7,9 +7,11 @@ package server;
 
 /**
  *
- * @author Pryze
+ * @author daniele.lasagno
  */
 public class Server {
+    //Attributi
+    
 
     /**
      * @param args the command line arguments
