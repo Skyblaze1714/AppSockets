@@ -1,7 +1,7 @@
 /*
  * Classe per la rappresentazione di quiz come oggetti
  */
-package Commons;
+package commons;
 
 /**
  *
