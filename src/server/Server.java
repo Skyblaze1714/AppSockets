@@ -7,7 +7,7 @@ package server;
 
 /**
  *
- * @author daniele.lasagno
+ * @author Gunea-Lasagno-Prisecaru
  */
 public class Server {
     //Attributi

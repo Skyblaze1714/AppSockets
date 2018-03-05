@@ -5,9 +5,10 @@ package commons;
 
 /**
  *
- * @author Dani
+ * @author Gunea-Lasagno-Prisecaru
  */
 public class Quiz {
+    
     //Attributi
     private String title;
     private String description;
@@ -31,4 +32,5 @@ public class Quiz {
         this.answers = answers;
         this.correctAnswers = correctAnswers.clone();
     }
+    
 }
