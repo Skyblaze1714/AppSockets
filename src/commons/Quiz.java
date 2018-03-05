@@ -33,4 +33,8 @@ public class Quiz {
         this.correctAnswers = correctAnswers.clone();
     }
     
+    public Quiz(){
+        author = "abs";
+    }
+    
 }

@@ -54,7 +54,7 @@ public class Message {
     
     /**
      * Constructor of Message class
-     * @param method The message method, it can only be one of the following values: getQuiz, postQuiz, postAnswer, postScore
+     * @param method The message method, it can only be one of the following values: getQuiz, postQuiz, outcome
      * @param content The content of the message
      * @throws InvalidMessageMethodException
      */
@@ -62,8 +62,7 @@ public class Message {
         switch(method){
             case "getQuiz":
             case "postQuiz":
-            case "postAnswer":
-            case "postScore":
+            case "outcome":
                 this.method = method;
                 break;
             default:

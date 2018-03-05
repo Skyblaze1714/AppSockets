@@ -14,81 +14,90 @@ import commons.*;
  * @author Gunea-Lasagno-Prisecaru
  */
 public class SocketManager {
-    
+
     //Attributi
     private int port;
-    
+
     private ObjectOutputStream output;
     private ObjectInputStream input;
-    
+
     private ServerSocket server;
     private Socket client;
-    
-    
+
     //Costruttore
     public SocketManager(int port) {
-        
+
         this.port = port;
         start();
-        
+
     }
-    
-    
+
     //Metodi
     private boolean start() {
-        
+
         try {
-            
+
             server = new ServerSocket(port);
-            
+
         } catch (IOException ex) {
-            
+
             ex.printStackTrace();
             return false;
-            
+
         }
-        
+
         System.out.println("Server created with success!");
         return true;
-        
-    } 
-    
-    private void run(){
-        
+
+    }
+
+    private void run() {
+
         while (true) {
-            
+
             try {
-                
+
                 waitForConnections();
                 setupStreams();
-                Message msg = (Message) input.readObject();
-                
-                
+                Message request = (Message) input.readObject();
+
+                Message response;
+                switch (request.method) {
+                    case "getQuiz":
+                        response = new Message(new Quiz());
+                        break;
+                    case "postQuiz":
+                        response = new Message("outcome", true);
+                        break;
+                }
+
+                output.writeObject(response);
+
             } catch (IOException | ClassNotFoundException ex) {
-                
+
                 ex.printStackTrace();
-                
+
             }
-            
+
         }
-        
+
     }
-    
+
     private void waitForConnections() throws IOException {
-        
+
         System.out.println("Waiting for someone to connect...");
         client = server.accept();
         System.out.println("Connected!");
-        
+
     }
-    
+
     private void setupStreams() throws IOException {
-        
+
         output = new ObjectOutputStream(client.getOutputStream());
         output.flush();
         input = new ObjectInputStream(client.getInputStream());
         System.out.println("Streams setup completed!");
-        
+
     }
-    
+
 }
