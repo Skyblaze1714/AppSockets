@@ -7,6 +7,6 @@ package client;
  *
  * @author Pryze
  */
-public class Client {
+public class Client_GUI {
     
 }

@@ -5,10 +5,27 @@
  */
 package client;
 
+import java.io.DataInputStream;
+import java.io.PrintStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 /**
  *
- * @author info
+ * @author Pryze
  */
-public class ClientSocket {
+public class ClientSocket implements Runnable{
+    //String title, String Description, String uthor,
+    //String[] answers, int corrcetAnswer;
     
+    
+    
+    
+      public void run() {
+          
+    }
+      
 }
