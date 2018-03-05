@@ -1,2 +1,6 @@
 /build/
+<<<<<<< HEAD
 /dist/
+=======
+/nbproject/private/private.properties
+>>>>>>> 6fc1a461c3e0fff78b9c985d005de52e7342eb4a
