@@ -3,11 +3,13 @@
  */
 package commons;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Gunea-Lasagno-Prisecaru
  */
-public class Quiz {
+public class Quiz implements Serializable {
     
     //Attributi
     private String title;

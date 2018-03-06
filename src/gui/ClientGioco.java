@@ -34,9 +34,9 @@ public class ClientGioco extends Frame{
     }
       
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new ClientGioco();
-    }
+    }*/
     
 }
 

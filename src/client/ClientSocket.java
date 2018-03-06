@@ -7,10 +7,10 @@ package client;
 
 import java.net.*;
 import java.io.*;
+
 import commons.*;
+import commons.exceptions.InvalidMessageMethodException;
 import server.SocketManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,20 +35,24 @@ public class ClientSocket implements Runnable{
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        run();
     }
     
     
       public void run() {
-            
+            System.out.println("t1");
             try {
                 setupStreams();
+                System.out.println("t4");
                 output.writeObject(new Message());
+                System.out.println("t5");
                 try {
                     Message msg = (Message) input.readObject();
+                    System.out.println("t6");
                     System.out.println(msg.toString());
                 } 
                 catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ClientSocket.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }   
             } 
             catch (IOException ex) {
@@ -63,9 +67,10 @@ public class ClientSocket implements Runnable{
           
           
     private void setupStreams() throws IOException {
-        
+        System.out.println("t2");
         output = new ObjectOutputStream(clientSocket.getOutputStream());
         output.flush();//nel caso in cui si perdono byte si pulisce
+        System.out.println("t3");
         input = new ObjectInputStream(clientSocket.getInputStream());
         System.out.println("Streams setup completed!");
         
@@ -73,8 +78,8 @@ public class ClientSocket implements Runnable{
     
     
     
-    public static void main(){
-        new SocketManager(1234);
+    public static void main(String[] args) throws InvalidMessageMethodException{
+        //new SocketManager(1234);
         new ClientSocket(1234);
     }
 }

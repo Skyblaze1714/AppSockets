@@ -4,12 +4,13 @@
 package commons;
 
 import commons.exceptions.InvalidMessageMethodException;
+import java.io.Serializable;
 
 /**
  *
  * @author Gunea-Lasagno-Prisecaru
  */
-public class Message {
+public class Message implements Serializable {
     
     //Attributi
     public final String method;

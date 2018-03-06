@@ -8,6 +8,9 @@ package server;
 import java.net.*;
 import java.io.*;
 import commons.*;
+import commons.exceptions.InvalidMessageMethodException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,10 +28,11 @@ public class SocketManager {
     private Socket client;
 
     //Costruttore
-    public SocketManager(int port) {
+    public SocketManager(int port) throws InvalidMessageMethodException {
 
         this.port = port;
         start();
+        run();
 
     }
 
@@ -51,7 +55,7 @@ public class SocketManager {
 
     }
 
-    private void run() {
+    private void run() throws InvalidMessageMethodException {
 
         while (true) {
 
@@ -68,6 +72,9 @@ public class SocketManager {
                         break;
                     case "postQuiz":
                         response = new Message("outcome", true);
+                        break;
+                    default:
+                        response = new Message("outcome", false);
                         break;
                 }
 
