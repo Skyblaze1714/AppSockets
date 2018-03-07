@@ -14,7 +14,7 @@ public class Message implements Serializable {
     
     //Attributi
     public final String method;
-    public final Object content;
+    transient public final Object content;
     
     
     //Costruttori
@@ -70,6 +70,12 @@ public class Message implements Serializable {
                 throw new InvalidMessageMethodException(method);
         }
         this.content = content;
+    }
+
+    //Metodi vari
+    @Override
+    public String toString() {
+        return "Message{" + "method=" + method + ", content=" + content + '}';
     }
     
 }

@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/info/Documents/Retard/AppSockets/src/commons/Quiz.java</file>
-            <file>file:/C:/Users/info/Documents/Retard/AppSockets/src/client/Client_GUI.java</file>
+            <file>file:/C:/Users/daniele.lasagno/Documents/GitHub/AppSockets/src/commons/Message.java</file>
+            <file>file:/C:/Users/daniele.lasagno/Documents/GitHub/AppSockets/src/server/SocketManager.java</file>
+            <file>file:/C:/Users/daniele.lasagno/Documents/GitHub/AppSockets/src/client/ClientSocket.java</file>
+            <file>file:/C:/Users/daniele.lasagno/Documents/GitHub/AppSockets/src/gui/ClientGioco.java</file>
+            <file>file:/C:/Users/daniele.lasagno/Documents/GitHub/AppSockets/src/commons/Quiz.java</file>
         </group>
     </open-files>
 </project-private>
