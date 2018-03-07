@@ -60,7 +60,7 @@ public class Message implements Serializable {
      * @param content The content of the message
      * @throws InvalidMessageMethodException
      */
-    public Message(String method, Object content) throws InvalidMessageMethodException {
+    public Message(String method, Object content) {
         switch(method){
             case "getQuiz":
             case "postQuiz":
@@ -68,7 +68,7 @@ public class Message implements Serializable {
                 this.method = method;
                 break;
             default:
-                throw new InvalidMessageMethodException(method);
+                throw new RuntimeException(new InvalidMessageMethodException(method));
         }
         this.content = content;
     }
