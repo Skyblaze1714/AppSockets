@@ -4,6 +4,7 @@
 package commons;
 
 import commons.exceptions.InvalidMessageMethodException;
+
 import java.io.Serializable;
 
 /**

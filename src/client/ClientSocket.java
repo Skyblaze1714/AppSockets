@@ -10,7 +10,6 @@ import java.io.*;
 
 import commons.*;
 import commons.exceptions.InvalidMessageMethodException;
-import server.SocketManager;
 
 /**
  *
@@ -79,7 +78,6 @@ public class ClientSocket implements Runnable{
     
     
     public static void main(String[] args) throws InvalidMessageMethodException{
-        //new SocketManager(1234);
         new ClientSocket(1234);
     }
 }

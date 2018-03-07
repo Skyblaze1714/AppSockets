@@ -7,10 +7,9 @@ package server;
 
 import java.net.*;
 import java.io.*;
+
 import commons.*;
 import commons.exceptions.InvalidMessageMethodException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -105,6 +104,11 @@ public class SocketManager {
         input = new ObjectInputStream(client.getInputStream());
         System.out.println("Streams setup completed!");
 
+    }
+    
+    
+    public static void main(String[] args) throws InvalidMessageMethodException{
+        new SocketManager(1234);
     }
 
 }
