@@ -16,17 +16,20 @@ import commons.exceptions.InvalidMessageMethodException;
  * @author Pryze
  */
 public class ClientSocket implements Runnable{
-    //String title, String Description, String uthor,
-    //String[] answers, int corrcetAnswer;
     
-    
+    //Attributi
+    //Porta
     private int port;
     
+    //Oggetti per lo stream
     private ObjectOutputStream output;
     private ObjectInputStream input;
     
+    //Socket
     private Socket clientSocket;
     
+    
+    //Costruttore
     ClientSocket (int port){
         this.port = port;
         try {
@@ -38,33 +41,28 @@ public class ClientSocket implements Runnable{
     }
     
     
-      public void run() {
-            System.out.println("t1");
-            try {
-                setupStreams();
-                System.out.println("t4");
-                output.writeObject(new Message());
-                System.out.println("t5");
-                try {
-                    Message msg = (Message) input.readObject();
-                    System.out.println("t6");
-                    System.out.println(msg.toString());
-                } 
-                catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                }   
-            } 
-            catch (IOException ex) {
-                
-                ex.printStackTrace();
-                
-            }
-            
+    public void run() {
+        System.out.println("Client socket: running");
         
+        try {
+            setupStreams();
+            System.out.println("t4");
+            output.writeObject(new Message());
+            System.out.println("t5");
+            try {
+                Message msg = (Message) input.readObject();
+                System.out.println("t6");
+                System.out.println(msg.toString());
+            } 
+            catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }   
+        } 
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }    
     }
       
-          
-          
     private void setupStreams() throws IOException {
         System.out.println("t2");
         output = new ObjectOutputStream(clientSocket.getOutputStream());

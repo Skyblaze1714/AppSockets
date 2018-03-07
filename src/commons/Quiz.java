@@ -22,7 +22,7 @@ public class Quiz {
         this.title = title;
         this.description = description;
         this.author = author;
-        this.answers = answers;
+        this.answers = answers.clone();
         this.correctAnswer =  correctAnswer;
     }
     
@@ -54,11 +54,11 @@ public class Quiz {
     }
 
     public String[] getAnswers() {
-        return answers;
+        return answers.clone();
     }
 
     public void setAnswers(String[] answers) {
-        this.answers = answers;
+        this.answers = answers.clone();
     }
 
     public int getCorrectAnswer() {

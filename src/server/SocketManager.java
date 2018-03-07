@@ -18,11 +18,14 @@ import commons.exceptions.InvalidMessageMethodException;
 public class SocketManager {
 
     //Attributi
+    //Porta
     private int port;
-
+    
+    //Oggetti per lo stream
     private ObjectOutputStream output;
     private ObjectInputStream input;
 
+    //Oggetti per il socket
     private ServerSocket server;
     private Socket client;
 
