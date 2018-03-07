@@ -3,11 +3,13 @@
  */
 package commons;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Gunea-Lasagno-Prisecaru
  */
-public class Quiz {
+public class Quiz implements Serializable {
     
     //Attributi
     private int id;
@@ -67,6 +69,11 @@ public class Quiz {
 
     public void setCorrectAnswer(int correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz{" + "id=" + id + ", title=" + title + ", description=" + description + ", author=" + author + ", answers=" + answers + ", correctAnswer=" + correctAnswer + '}';
     }
     
 }

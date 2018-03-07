@@ -30,8 +30,8 @@ public class StorageManager {
         asd[0] = "hi";
         asd[1] = "hello";
         
-		transient Quiz quiz1 = new Quiz("Titolo 1 ", "descrizione 1 ", "asdasd", asd, 2);
-		transient Quiz quiz2 = new Quiz("Titolo 2 ", "descrizione 2 ", "Female", asd, 4);
+		Quiz quiz1 = new Quiz("Titolo 1 ", "descrizione 1 ", "asdasd", asd, 2);
+		Quiz quiz2 = new Quiz("Titolo 2 ", "descrizione 2 ", "Female", asd, 4);
 
 		try {
 			FileOutputStream f = new FileOutputStream(new File("C:\\Users\\Pryze\\Desktop\\aseprite\\myObjects.txt"));
