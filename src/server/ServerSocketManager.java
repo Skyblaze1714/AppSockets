@@ -27,7 +27,7 @@ public class ServerSocketManager {
     private Socket client;
 
     
-    //Costruttore
+    //Costruttori
     /**
      * Costruisce un oggetto della classe ServerSocketManager
      * @param port Porta da utilizzare per la trasmissione
@@ -35,7 +35,7 @@ public class ServerSocketManager {
     public ServerSocketManager(int port) {
         this.port = port;
         start();    //Inizializzazione del server socket
-        run();      //Avvio del server socket
+        //run();      //Avvio del server socket
     }
     
     /**
@@ -46,7 +46,7 @@ public class ServerSocketManager {
     public ServerSocketManager() {
         this.port = 1234;
         start();    //Inizializzazione del server socket
-        run();      //Avvio del server socket
+        //run();      //Avvio del server socket
     }
 
     
@@ -69,39 +69,43 @@ public class ServerSocketManager {
         return true;
     }
 
-    private void run() {
-        while (true) {
-            try {
-                //Preparazione alla trasmissione
-                waitForConnections();   //Attesa di una connessione
-                setupStreams();         //Inizializzazione degli stream
-                
-                //Ricezione dei dati dal client
-                Message request = (Message) input.readObject();
+    /**
+     * Aspetta la connessione di un socket e restituisce la sua richiesta
+     * @return Recieved request
+     */
+    public Message waitForRequest() {
+        Message request = null;
+        
+        try {
 
-                //Risposta al client
-                Message response;
-                
-                switch (request.method) {
-                    case "getQuiz":
-                        response = new Message(new Quiz());
-                        break;
-                    case "postQuiz":
-                        response = new Message("outcome", true);
-                        break;
-                    default:
-                        response = new Message("outcome", false);
-                        break;
-                }
+            //Preparazione alla trasmissione
+            waitForConnections();   //Attesa di una connessione
+            setupStreams();         //Inizializzazione degli stream
 
-                //Invio risposta al client
-                output.writeObject(response);
-                
-                System.out.println("server socket: connection closed!");
-                
-            } catch (IOException | ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
+            //Ricezione dei dati dal client
+            request = (Message) input.readObject();
+
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        
+        return request;
+    }
+    
+    /**
+     * Risponde al socket che ha iniziato la connesione
+     * @param response Riposta da inviare
+     */
+    public void sendResponse(Message response) {
+        try {
+
+            //Invio risposta al client
+            output.writeObject(response);
+
+            System.out.println("server socket: connection closed!");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -132,8 +136,29 @@ public class ServerSocketManager {
     }
     
     
+    //TEST - main di prova per il server    
     public static void main(String[] args) {
-        new ServerSocketManager();
+        ServerSocketManager serverSocket = new ServerSocketManager();
+        
+        while(true) {
+            Message request = serverSocket.waitForRequest();
+            
+            Message response;
+            
+            switch (request.method) {
+                case "getQuiz":
+                    response = new Message(new Quiz());
+                    break;
+                case "postQuiz":
+                    response = new Message("outcome", true);
+                    break;
+                default:
+                    response = new Message("outcome", false);
+                    break;
+            }
+            
+            serverSocket.sendResponse(response);
+        }
     }
 
 }

@@ -1,14 +1,38 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe per la messa in funzione e la gestione del server
  */
 package server;
 
+import commons.*;
+
 /**
  *
- * @author daniele.lasagno
+ * @author Gunea-Lasagno-Prisecaru
  */
 public class Server {
+    
+    //Attributi
+    //Manager
+    private ServerSocketManager serverSocket;
+    private StorageManager storage;
+    
+    //Dati
+    private Quiz[] quizzes;
+    
+    
+    //Costruttore
+    public Server() {
+        serverSocket = new ServerSocketManager();
+    }
+    
+    
+    //Metodi
+    
+    
+    //Main
+    public static void main(String[] args) {
+        //Inizializzazione del server
+        Server server = new Server();
+    }
     
 }
