@@ -11,6 +11,11 @@ import java.io.*;
  * @author Gunea-Lasagno-Prisecaru
  */
 public class StorageManager {
+    
+    private static final String dir = "D:\\MyObjects.txt";
+    private static BufferedReader in;
+    
+    
 
     public static void saveQuiz(Quiz q) throws IOException{
         
@@ -23,9 +28,10 @@ public class StorageManager {
         //o.close();
 	//f.close();
         
-        try(FileWriter fw = new FileWriter("C:\\Users\\Pryze\\Documents\\0Scuola\\asdtesttest\\MyObjexts.txt", true);
+        try(FileWriter fw = new FileWriter(dir, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw))
+            
             
         {
             out.println(q);
@@ -48,9 +54,10 @@ public class StorageManager {
         //oi.close();
         
         
-        BufferedReader in;
-        in = new BufferedReader(new FileReader("C:\\Users\\Pryze\\Documents\\0Scuola\\asdtesttest\\MyObjexts.txt"));
-        in.read();
+        
+        String line = in.readLine();
+        System.out.println(line);
+        //in.skip(line.length());
         
     }
     
@@ -96,6 +103,8 @@ public class StorageManager {
                 Quiz pr2 = (Quiz) oi.readObject();
                 */
 
+                in = new BufferedReader(new FileReader(dir));
+                        
                 for(int i=0; i<dim; i++){
                     //Quiz pr1 = (Quiz) oi.readObject();
                     //System.out.println(pr1.toString());
