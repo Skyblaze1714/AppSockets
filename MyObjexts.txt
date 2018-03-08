@@ -1,0 +1,10 @@
+Quiz{ title=Titolo 0, description=descrizione 0, author=aut 0, answers=[Ljava.lang.String;@15db9742, correctAnswer=0}
+Quiz{ title=Titolo 1, description=descrizione 1, author=aut 1, answers=[Ljava.lang.String;@6d06d69c, correctAnswer=1}
+Quiz{ title=Titolo 2, description=descrizione 2, author=aut 2, answers=[Ljava.lang.String;@7852e922, correctAnswer=2}
+Quiz{ title=Titolo 3, description=descrizione 3, author=aut 3, answers=[Ljava.lang.String;@4e25154f, correctAnswer=3}
+Quiz{ title=Titolo 4, description=descrizione 4, author=aut 4, answers=[Ljava.lang.String;@70dea4e, correctAnswer=4}
+Quiz{ title=Titolo 5, description=descrizione 5, author=aut 5, answers=[Ljava.lang.String;@5c647e05, correctAnswer=5}
+Quiz{ title=Titolo 6, description=descrizione 6, author=aut 6, answers=[Ljava.lang.String;@33909752, correctAnswer=6}
+Quiz{ title=Titolo 7, description=descrizione 7, author=aut 7, answers=[Ljava.lang.String;@55f96302, correctAnswer=7}
+Quiz{ title=Titolo 8, description=descrizione 8, author=aut 8, answers=[Ljava.lang.String;@3d4eac69, correctAnswer=8}
+Quiz{ title=Titolo 9, description=descrizione 9, author=aut 9, answers=[Ljava.lang.String;@42a57993, correctAnswer=9}
