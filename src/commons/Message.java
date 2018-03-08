@@ -58,7 +58,6 @@ public class Message implements Serializable {
      * Constructor of Message class
      * @param method The message method, it can only be one of the following values: getQuiz, postQuiz, outcome
      * @param content The content of the message
-     * @throws InvalidMessageMethodException
      */
     public Message(String method, Object content) {
         switch(method){
@@ -73,7 +72,12 @@ public class Message implements Serializable {
         this.content = content;
     }
 
+    
     //Metodi vari
+    /**
+     * Restituisce una stringa contenente i dettagli riguardanti l'oggetto
+     * @return Stringa contenente le informazioni dell'oggetto
+     */
     @Override
     public String toString() {
         return "Message{" + "method=" + method + ", content=" + content.toString() + '}';

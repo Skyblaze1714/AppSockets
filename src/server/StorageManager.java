@@ -1,7 +1,6 @@
 /*
  * Salvataggio dei quiz in un file (Se non c'è già, si crea)
  * Lettura file e caricamento in un'Array
- * 
  */
 package server;
 

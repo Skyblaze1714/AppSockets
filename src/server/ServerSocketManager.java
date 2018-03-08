@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe per la gestione delle richieste al server
  */
 package server;
 
@@ -14,7 +12,7 @@ import commons.*;
  *
  * @author Gunea-Lasagno-Prisecaru
  */
-public class SocketManager {
+public class ServerSocketManager {
 
     //Attributi
     //Porta
@@ -28,30 +26,47 @@ public class SocketManager {
     private ServerSocket server;
     private Socket client;
 
+    
     //Costruttore
-    public SocketManager(int port) {
+    /**
+     * Costruisce un oggetto della classe ServerSocketManager
+     * @param port Porta da utilizzare per la trasmissione
+     */
+    public ServerSocketManager(int port) {
         this.port = port;
         start();    //Inizializzazione del server socket
         run();      //Avvio del server socket
     }
+    
+    /**
+     * Costruisce un oggetto della classe ServerSocketManager
+     * con una porta di default (1234)
+     * @param port Porta da utilizzare per la trasmissione
+     */
+    public ServerSocketManager() {
+        this.port = 1234;
+        start();    //Inizializzazione del server socket
+        run();      //Avvio del server socket
+    }
 
+    
     //Metodi
+    /**
+     * Inizializza il socket del server e restituisce true se l'esito è positivo,
+     * o false se negativo
+     * @return Esito dell'operazione
+     */
     private boolean start() {
-
-        try {
-
+        //Inizializza il ServerSocket
+        try { 
             server = new ServerSocket(port);
-
         } catch (IOException ex) {
-
             ex.printStackTrace();
             return false;
-
         }
 
         System.out.println("Server created with success!");
         return true;
-
     }
 
     private void run() {
@@ -118,7 +133,7 @@ public class SocketManager {
     
     
     public static void main(String[] args) {
-        new SocketManager(1234);
+        new ServerSocketManager();
     }
 
 }

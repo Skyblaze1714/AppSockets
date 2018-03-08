@@ -37,7 +37,8 @@ public class ClientSocketManager {
     }
     
     /**
-     * Costruisce un oggetto della classe ClientSocketManager con una porta di default (1234)
+     * Costruisce un oggetto della classe ClientSocketManager
+     * con una porta di default (1234)
      */
     ClientSocketManager (){
         this.port = 1234;

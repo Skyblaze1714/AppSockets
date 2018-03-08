@@ -12,14 +12,22 @@ import java.io.Serializable;
 public class Quiz implements Serializable {
     
     //Attributi
-    private int id;
     private String title;
     private String description;
     private final String author;
+    
     private String[] answers;
     private int correctAnswer;
     
     //Costruttore
+    /**
+     * Costruisce un oggetto della classe Quiz
+     * @param title Titolo
+     * @param description Descrizione
+     * @param author Autore
+     * @param answers Risposte
+     * @param correctAnswer Risposta corretta
+     */
     public Quiz(String title, String description, String author, String[] answers, int correctAnswer) {
         this.title = title;
         this.description = description;
@@ -28,17 +36,13 @@ public class Quiz implements Serializable {
         this.correctAnswer =  correctAnswer;
     }
     
-    //Test
+    //TEST - costruttore di prova
     public Quiz(){
         author = "abs";
     }
     
     
     //Metodi
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -73,7 +77,7 @@ public class Quiz implements Serializable {
 
     @Override
     public String toString() {
-        return "Quiz{" + "id=" + id + ", title=" + title + ", description=" + description + ", author=" + author + ", answers=" + answers + ", correctAnswer=" + correctAnswer + '}';
+        return "Quiz{" + " title=" + title + ", description=" + description + ", author=" + author + ", answers=" + answers + ", correctAnswer=" + correctAnswer + '}';
     }
     
 }
