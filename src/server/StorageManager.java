@@ -10,9 +10,9 @@ import java.io.*;
 /**
  * @author Gunea-Lasagno-Prisecaru
  */
-public class StorageManager {
+public class StorageManager implements java.io.Serializable {
     
-    private static final String dir = "D:\\MyObjects.txt";
+    private static final String dir = "C:\\Users\\Pryze\\Documents\\0Scuola\\asdtesttest\\MyObjects.txt";
     private static BufferedReader in;
     
     
@@ -28,21 +28,52 @@ public class StorageManager {
         //o.close();
 	//f.close();
         
+        /* Lasa
         try(FileWriter fw = new FileWriter(dir, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-            
-            
+            PrintWriter out = new PrintWriter(bw)) 
         {
             out.println(q);
             out.close();
-            
         }catch(IOException e){
             System.out.println("Error initializing stream");
         }
+        */
+        
+        //Terzo tentativo
+                
+        FileOutputStream fout = null;
+        ObjectOutputStream oos = null;
+        
+        try{
+        fout = new FileOutputStream(dir);
+        oos = new ObjectOutputStream(fout);
+        
+        oos.writeObject(q.getTitle() );
+        oos.writeObject(q.getDescription() );
+        oos.writeObject(q.getAuthor() );
+        //oos.writeObject(q.getCorrectAnswer() );
+        //os.writeObject(q.getAnswers() );
+        
+        
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        } finally{
+            //non so a cosa serva questo
+            if (fout != null || oos != null){
+                try{
+                    oos.close();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        
+        }
+        
+        
     }
     
-    public static void loadQuiz () throws IOException, ClassNotFoundException{
+    public static Quiz loadQuiz (int i) throws IOException, ClassNotFoundException{
         
         //FileInputStream fi = new FileInputStream(new File("C:\Users\Pryze\Documents\0Scuola\asdtesttest\MyObjexts.txt"));
         //ObjectInputStream oi = new ObjectInputStream(fi);
@@ -55,16 +86,38 @@ public class StorageManager {
         
         
         
-        String line = in.readLine();
-        System.out.println(line);
+        //String line = in.readLine();
+        //System.out.println(line);
         //in.skip(line.length());
+        
+        //Terza prova
+        
+        FileInputStream fin = null;
+        ObjectInputStream ios = null;
+
+        fin = new FileInputStream(dir);
+        ios = new ObjectInputStream(fin);
+        
+        
+        //ios.readObject();
+        //Quarta prova
+        String titolo = (String) ios.readObject();
+        String descrizione = (String) ios.readObject();
+        String autore = (String) ios.readObject();
+        //String[] risposte = (String[]) ios.readObject();
+        //int risposteCorrette = (int) ios.readObject();
+        
+        //Quiz asd = new Quiz(titolo, descrizione, autore, risposte, risposteCorrette);
+        Quiz asd = new Quiz(titolo, descrizione, autore);
+        
+        return null;
         
     }
     
     public static void main(String[] args) throws ClassNotFoundException {
 
-        
-        
+
+                
         final int dim = 10;
         String[] asd = new String[2];
         asd[0] = "hi";
@@ -108,7 +161,7 @@ public class StorageManager {
                 for(int i=0; i<dim; i++){
                     //Quiz pr1 = (Quiz) oi.readObject();
                     //System.out.println(pr1.toString());
-                    loadQuiz();
+                    loadQuiz(i);
                 }
                 /*
                 System.out.println(pr1.toString());

@@ -35,6 +35,16 @@ public class Quiz implements Serializable {
         this.answers = answers.clone();
         this.correctAnswer =  correctAnswer;
     }
+    //prova
+        public Quiz(String title, String description, String author) {
+        this.title = title;
+        this.description = description;
+        this.author = author;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
     
     //TEST - costruttore di prova
     public Quiz(){
