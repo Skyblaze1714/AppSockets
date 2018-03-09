@@ -3,8 +3,6 @@
  */
 package commons;
 
-import commons.exceptions.InvalidMessageMethodException;
-
 import java.io.Serializable;
 
 /**
@@ -67,7 +65,7 @@ public class Message implements Serializable {
                 this.method = method;
                 break;
             default:
-                throw new RuntimeException(new InvalidMessageMethodException(method));
+                throw new IllegalArgumentException(method + " is not a valid message method, watch the valid types on Message javadoc");
         }
         this.content = content;
     }

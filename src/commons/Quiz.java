@@ -32,7 +32,7 @@ public class Quiz implements Serializable {
         this.title = title;
         this.description = description;
         this.author = author;
-        this.answers = answers.clone();
+        this.answers = (answers == null)? null : answers.clone();
         this.correctAnswer =  correctAnswer;
     }
     //prova
@@ -74,7 +74,7 @@ public class Quiz implements Serializable {
     }
 
     public void setAnswers(String[] answers) {
-        this.answers = answers.clone();
+        this.answers = (answers == null)? null : answers.clone();
     }
 
     public int getCorrectAnswer() {

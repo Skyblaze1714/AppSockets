@@ -106,6 +106,7 @@ public class ClientSocketManager {
     public static void main(String[] args) {
         ClientSocketManager socket = new ClientSocketManager();
         //TEST - Oggetto ricevuto
+        //socket.run(new Message());
         System.out.println(socket.run(new Message()).toString());
     }
 }
