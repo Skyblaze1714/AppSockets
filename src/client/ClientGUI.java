@@ -18,6 +18,7 @@ public class ClientGUI extends javax.swing.JFrame {
      */
     public ClientGUI() {
         initComponents();
+        
     }
 
     /**
@@ -32,12 +33,10 @@ public class ClientGUI extends javax.swing.JFrame {
         addQuizAnswers = new javax.swing.ButtonGroup();
         TabbedPane = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
+        quizListContainer = new javax.swing.JScrollPane();
+        quizList = new javax.swing.JList<>();
+        takeQuizButton = new javax.swing.JButton();
         homeTab = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -62,80 +61,46 @@ public class ClientGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(415, 400));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel6.setText("Quiz title");
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        jLabel7.setText("Quiz author");
-
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel8.setText("Domanda del quiz, bla bla bla bla bla bla bla bla bla bla");
-
-        jButton4.setText("Take quiz!");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                refreshButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7))
-                            .addComponent(jButton4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jButton1.setText("Refresh");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
+        quizList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
+        quizListContainer.setViewportView(quizList);
+
+        takeQuizButton.setText("Take quiz!");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(quizListContainer)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(takeQuizButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                        .addComponent(refreshButton)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refreshButton)
+                    .addComponent(takeQuizButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addComponent(quizListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         TabbedPane.addTab("tab3", jPanel5);
@@ -352,7 +317,7 @@ public class ClientGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabbedPane)
+            .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,23 +331,29 @@ public class ClientGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_questionTextFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         System.out.println("refreshing");
         
         ClientSocketManager test = new ClientSocketManager();
-        Quiz q = (Quiz) test.run(new Message()).content;
-        jLabel6.setText(q.getTitle());
-        jLabel7.setText(q.getAuthor());
-        jLabel8.setText(q.getDescription());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Quiz[] q = (Quiz[]) test.run(new Message()).content;
+        
+        String[] quizzes = new String[q.length];
+        
+        for(int i = 0; i < q.length; i++){
+            quizzes[i] = (i + 1) + " " + q[i].getTitle() + " - " + q[i].getDescription();
+        }
+        
+        quizList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = quizzes.clone();
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,24 +400,18 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup addQuizAnswers;
     private javax.swing.JPanel addQuizTab;
     private javax.swing.JPanel homeTab;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
@@ -454,5 +419,9 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JTextField questionTextField;
+    private javax.swing.JList<String> quizList;
+    private javax.swing.JScrollPane quizListContainer;
+    private javax.swing.JButton refreshButton;
+    private javax.swing.JButton takeQuizButton;
     // End of variables declaration//GEN-END:variables
 }
