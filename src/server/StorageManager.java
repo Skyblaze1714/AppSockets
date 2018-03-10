@@ -37,12 +37,15 @@ public class StorageManager implements java.io.Serializable {
         ObjectInputStream restore = new ObjectInputStream(saveFile);
         
         //Object obj = restore.readObject(); per un oggetto generico
-        Quiz asd = (Quiz) restore.readObject();
+        Quiz q = (Quiz) restore.readObject();
+        
+        
         restore.close();
         }catch(Exception exc){
             exc.printStackTrace();
         }
-        return null;
+        
+        return q;
     }
     
     public static void main(String[] args) throws ClassNotFoundException {
