@@ -14,7 +14,7 @@ public class Server {
     //Attributi
     //Manager
     private ServerSocketManager serverSocket;
-    private StorageManager storage;
+    private ServerStorageManager storage;
     
     //Dati
     private Quiz[] quizzes;

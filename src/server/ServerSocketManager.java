@@ -153,6 +153,7 @@ public class ServerSocketManager {
                     //response = new Message(new Quiz());
                     break;
                 case "postQuiz":
+                    System.out.println("server socket: recivied a quiz = " + request.content.toString());
                     response = new Message("outcome", true);
                     break;
                 default:
