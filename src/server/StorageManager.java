@@ -12,14 +12,15 @@ import java.io.*;
  */
 public class StorageManager implements java.io.Serializable {
     
-    private static final String dir = "C:\\Users\\Pryze\\Documents\\0Scuola\\asdtesttest\\MyObjects";
+    private static final String dir = "C:\\Users\\Pryze\\Documents\\0Scuola\\asdtesttest\\QuizSaveN_";
+    private static final String est = ".txt"; //estensione file
     //private static BufferedReader in;
     
     
 
     public static void saveQuiz(Quiz q, int w) throws IOException{
         try{
-        FileOutputStream saveFile = new FileOutputStream(dir+w+".txt");
+        FileOutputStream saveFile = new FileOutputStream(dir+w+est);
         ObjectOutputStream save = new ObjectOutputStream(saveFile);
         
         save.writeObject(q);
@@ -34,7 +35,7 @@ public class StorageManager implements java.io.Serializable {
 
     Quiz q = new Quiz();
         try{
-        FileInputStream saveFile = new FileInputStream(dir+w+".txt");
+        FileInputStream saveFile = new FileInputStream(dir+w+est);
         ObjectInputStream restore = new ObjectInputStream(saveFile);
         
         //Object obj = restore.readObject(); per un oggetto generico
@@ -55,34 +56,23 @@ public class StorageManager implements java.io.Serializable {
         String[] asd = new String[2];
         asd[0] = "hi";
         asd[1] = "hello";
-        Quiz qwe = new Quiz();
-        Quiz qwer = new Quiz();
         
         Quiz[] arr = new Quiz[dim];
-        int pos = 0;
+        Quiz[] arr2 = new Quiz[dim];
 
 
         try {            
-                
-                /*for(int i=0; i<dim; i++){
+                //carico sul file
+                for(int i=0; i<dim; i++){
                     arr[i] = new Quiz("descrizione "+i, "aut "+i, asd, i);
-                    saveQuiz(arr[i]);
-                }*/
-                Quiz test = new Quiz("asdasdd", "aut ", asd, 9);
-                Quiz test2 = new Quiz("secondo", "pryze", asd, 5);
-                saveQuiz(test, pos);
-                pos++;
-                saveQuiz(test2, pos);
-                
-                //in = new BufferedReader(new FileReader(dir));
-                qwe = (Quiz) loadQuiz(pos);
-                pos--;
-                qwer = (Quiz) loadQuiz(pos);
-                System.out.println(qwe.toString());
-                System.out.println(qwer.toString());
-                /*for(int i=0; i<dim; i++){
-                    loadQuiz(i);
-                }*/
+                    saveQuiz(arr[i],i);
+                }
+
+                //prendo dal file
+                for(int i=0; i<dim; i++){
+                    arr[i] = (Quiz) loadQuiz(i);
+                    System.out.println(arr[i].toString());
+                }
                 
         } catch (IOException ex) {
             ex.printStackTrace();
