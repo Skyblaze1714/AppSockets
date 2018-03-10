@@ -147,7 +147,7 @@ public class ServerSocketManager {
             
             switch (request.method) {
                 case "getQuiz":
-                    Quiz[] quizzes = { new Quiz("titolo", "descrizione", "autore", null, 1), new Quiz("titolo", "descrizione", "autore", null, 1), new Quiz("titolo", "descrizione", "autore", null, 1) };
+                    Quiz[] quizzes = { new Quiz("domanda", "autore", null, 1), new Quiz("domanda", "autore", null, 1), new Quiz("domanda", "autore", null, 1) };
                     
                     response = new Message(quizzes);
                     //response = new Message(new Quiz());

@@ -11,9 +11,7 @@ import java.io.Serializable;
  */
 public class Quiz implements Serializable {
     
-    //Attributi
-    private String title;
-    private String description;
+    private String question;
     private final String author;
     
     private String[] answers;
@@ -23,22 +21,20 @@ public class Quiz implements Serializable {
     /**
      * Costruisce un oggetto della classe Quiz
      * @param title Titolo
-     * @param description Descrizione
+     * @param question Descrizione
      * @param author Autore
      * @param answers Risposte
      * @param correctAnswer Risposta corretta
      */
-    public Quiz(String title, String description, String author, String[] answers, int correctAnswer) {
-        this.title = title;
-        this.description = description;
+    public Quiz(String question, String author, String[] answers, int correctAnswer) {
+        this.question = question;
         this.author = author;
         this.answers = (answers == null)? null : answers.clone();
         this.correctAnswer =  correctAnswer;
     }
     //prova
-        public Quiz(String title, String description, String author) {
-        this.title = title;
-        this.description = description;
+        public Quiz(String question, String author) {
+        this.question = question;
         this.author = author;
     }
 
@@ -53,20 +49,12 @@ public class Quiz implements Serializable {
     
     
     //Metodi
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
-        return description;
+        return question;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.question = description;
     }
 
     public String[] getAnswers() {
@@ -87,7 +75,7 @@ public class Quiz implements Serializable {
 
     @Override
     public String toString() {
-        return "Quiz{" + " title=" + title + ", description=" + description + ", author=" + author + ", answers=" + answers + ", correctAnswer=" + correctAnswer + '}';
+        return "Quiz{" + "description=" + question + ", author=" + author + ", answers=" + answers + ", correctAnswer=" + correctAnswer + '}';
     }
     
 }

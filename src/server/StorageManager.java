@@ -49,7 +49,6 @@ public class StorageManager implements java.io.Serializable {
         fout = new FileOutputStream(dir);
         oos = new ObjectOutputStream(fout);
         
-        oos.writeObject(q.getTitle() );
         oos.writeObject(q.getDescription() );
         oos.writeObject(q.getAuthor() );
         //oos.writeObject(q.getCorrectAnswer() );
@@ -108,7 +107,7 @@ public class StorageManager implements java.io.Serializable {
         //int risposteCorrette = (int) ios.readObject();
         
         //Quiz asd = new Quiz(titolo, descrizione, autore, risposte, risposteCorrette);
-        Quiz asd = new Quiz(titolo, descrizione, autore);
+        Quiz asd = new Quiz(descrizione, autore);
         
         return null;
         
@@ -133,7 +132,7 @@ public class StorageManager implements java.io.Serializable {
 
 
                 for(int i=0; i<dim; i++){
-                    arr[i] = new Quiz("Titolo "+i, "descrizione "+i, "aut "+i, asd, i);
+                    arr[i] = new Quiz("descrizione "+i, "aut "+i, asd, i);
                     saveQuiz(arr[i]);
                 }
 
