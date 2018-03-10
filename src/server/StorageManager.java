@@ -13,14 +13,14 @@ import java.io.*;
 public class StorageManager implements java.io.Serializable {
     
     private static final String dir = "C:\\Users\\Pryze\\Documents\\0Scuola\\asdtesttest\\MyObjects.txt";
-    private static BufferedReader in;
+    //private static BufferedReader in;
     
     
 
     public static void saveQuiz(Quiz q) throws IOException{
         try{
         FileOutputStream saveFile = new FileOutputStream(dir);
-        ObjectOutputStream save = ObjectOutputStream(saveFile);
+        ObjectOutputStream save = new ObjectOutputStream(saveFile);
         
         save.writeObject(q);
         save.close();
@@ -30,11 +30,11 @@ public class StorageManager implements java.io.Serializable {
         
     }
     
-    public static Quiz loadQuiz (int i) throws IOException, ClassNotFoundException{
+    public static Quiz loadQuiz(int i){
 
         try{
         FileInputStream saveFile = new FileInputStream(dir);
-        ObjectInputStream restore = ObjectInputStream(saveFile);
+        ObjectInputStream restore = new ObjectInputStream(saveFile);
         
         //Object obj = restore.readObject(); per un oggetto generico
         Quiz asd = (Quiz) restore.readObject();
@@ -43,13 +43,10 @@ public class StorageManager implements java.io.Serializable {
             exc.printStackTrace();
         }
         return null;
-        
     }
     
     public static void main(String[] args) throws ClassNotFoundException {
 
-
-                
         final int dim = 10;
         String[] asd = new String[2];
         asd[0] = "hi";
@@ -59,52 +56,21 @@ public class StorageManager implements java.io.Serializable {
 
 
 
-        try {
-                //FileOutputStream f = new FileOutputStream(new File("myObjects.txt"));
-                //ObjectOutputStream o = new ObjectOutputStream(f);
-
-
-                for(int i=0; i<dim; i++){
+        try {            
+                
+                /*for(int i=0; i<dim; i++){
                     arr[i] = new Quiz("descrizione "+i, "aut "+i, asd, i);
                     saveQuiz(arr[i]);
-                }
-
-                // Write objects to file
-                /*
-                o.writeObject(quiz1);
-                o.writeObject(quiz2);
-                */
-
-
-                //o.close();
-                //f.close();
-
-                //FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
-                //ObjectInputStream oi = new ObjectInputStream(fi);
-
-                // Read objects
-                /*
-                Quiz pr1 = (Quiz) oi.readObject();
-                Quiz pr2 = (Quiz) oi.readObject();
-                */
-
-                in = new BufferedReader(new FileReader(dir));
-                        
-                for(int i=0; i<dim; i++){
-                    //Quiz pr1 = (Quiz) oi.readObject();
-                    //System.out.println(pr1.toString());
+                }*/
+                Quiz test = new Quiz("asdasdd", "aut ", asd, 9);
+                saveQuiz(test);
+                
+                //in = new BufferedReader(new FileReader(dir));
+                loadQuiz(0);
+                /*for(int i=0; i<dim; i++){
                     loadQuiz(i);
-                }
-                /*
-                System.out.println(pr1.toString());
-                System.out.println(pr1.toString());
-                System.out.println(pr2.toString());0
-                */
-
-
-                //oi.close();
-                //fi.close();
-
+                }*/
+                
         } catch (IOException ex) {
             ex.printStackTrace();
         } 
