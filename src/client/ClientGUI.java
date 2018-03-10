@@ -335,16 +335,16 @@ public class ClientGUI extends javax.swing.JFrame {
         System.out.println("refreshing");
         
         ClientSocketManager test = new ClientSocketManager();
-        Quiz[] q = (Quiz[]) test.run(new Message()).content;
+        Quiz[] quizzes = (Quiz[]) test.run(new Message()).content;
         
-        String[] quizzes = new String[q.length];
+        String[] quizzesStrings = new String[quizzes.length];
         
-        for(int i = 0; i < q.length; i++){
-            quizzes[i] = (i + 1) + " " + q[i].getTitle() + " - " + q[i].getDescription();
+        for(int i = 0; i < quizzes.length; i++){
+            quizzesStrings[i] = (i + 1) + " " + quizzes[i].getTitle() + " - " + quizzes[i].getDescription();
         }
         
         quizList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = quizzes.clone();
+            String[] strings = quizzesStrings.clone();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
