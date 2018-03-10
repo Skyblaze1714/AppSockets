@@ -17,8 +17,44 @@ public class ServerStorageManager implements java.io.Serializable {
     //private static BufferedReader in;
     
     
+    //=================================================================
+    public static void saveArrayQuiz(Quiz[] q) throws IOException{
+        try{
+        FileOutputStream saveFile = new FileOutputStream(dir+est);
+        ObjectOutputStream save = new ObjectOutputStream(saveFile);
+        for(int i=0; i< q.length; i++){
+        save.writeObject(q[i]);
+        }
+        save.close();
+        
+        
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+        
+    }
+    //====================================================================
+ public static Quiz[] loadArrayQuiz(int dim){
 
-    public static void saveQuiz(Quiz q, int w) {
+        Quiz[] q = new Quiz[dim];
+        try{
+        FileInputStream saveFile = new FileInputStream(dir+est);
+        ObjectInputStream restore = new ObjectInputStream(saveFile);
+
+        q= (Quiz[]) restore.readObject();
+        
+        restore.close();
+        
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }
+        
+        return q;
+    }
+    
+    
+    //=====================================================================
+    public static void saveQuiz(Quiz q, int w) throws IOException{
         try{
         FileOutputStream saveFile = new FileOutputStream(dir+w+est);
         ObjectOutputStream save = new ObjectOutputStream(saveFile);
@@ -30,8 +66,8 @@ public class ServerStorageManager implements java.io.Serializable {
         }
         
     }
-    
-    public static Quiz loadQuiz(int w){
+    //======================LOAD QUIZ======================================
+    public Quiz loadQuiz(int w){
 
         Quiz q = new Quiz();
         try{
@@ -62,11 +98,36 @@ public class ServerStorageManager implements java.io.Serializable {
         Quiz[] arr2 = new Quiz[dim];
 
 
-        //carico sul file
-        for(int i=0; i<dim; i++){
-            arr[i] = new Quiz("descrizione "+i, "aut "+i, asd, i);
-            saveQuiz(arr[i],i);
-        }
+        try {            
+                //carico sul file
+                
+                for(int i=0; i<dim; i++){
+                    arr[i] = new Quiz("descrizione "+i, "aut "+i, asd, i);
+                    //saveQuiz(arr[i],i);
+                }
+                
+                saveArrayQuiz(arr);
+                arr2 = loadArrayQuiz(dim);
+                
+                for(int i=0; i<dim; i++){
+                    //arr[i] = (Quiz) loadArrayQuiz(dim,i);
+                    System.out.println(arr[i].toString());
+                }
+                
+                
+
+                //prendo dal file
+                /*
+                for(int i=0; i<dim; i++){
+                    arr[i] = (Quiz) loadArrayQuiz(dim,i);
+                    System.out.println(arr[i].toString());
+                }*/
+                
+                
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } 
+
 
         //prendo dal file
         for(int i=0; i<dim; i++){
