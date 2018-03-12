@@ -22,9 +22,7 @@ public class ServerStorageManager implements java.io.Serializable {
         try{
         FileOutputStream saveFile = new FileOutputStream(dir+est);
         ObjectOutputStream save = new ObjectOutputStream(saveFile);
-        for(int i=0; i< q.length; i++){
-        save.writeObject(q[i]);
-        }
+        save.writeObject(q);
         save.close();
         
         
