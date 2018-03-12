@@ -6,6 +6,8 @@ package server;
 
 import commons.*; 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Gunea-Lasagno-Prisecaru
@@ -18,6 +20,11 @@ public class ServerStorageManager implements java.io.Serializable {
     
     
     //=================================================================
+    /**
+     * saveArrayQuiz serve per salvare l'array di oggetti Quiz
+     * @param q
+     * @throws IOException 
+     */
     public static void saveArrayQuiz(Quiz[] q) throws IOException{
         try{
         FileOutputStream saveFile = new FileOutputStream(dir+est);
@@ -32,60 +39,37 @@ public class ServerStorageManager implements java.io.Serializable {
         
     }
     //====================================================================
- public static Quiz[] loadArrayQuiz(int dim){
+    /**
+     * LoadArrayQuiz serve per prendere l'arrai di oggetti
+     * Quiz dal file precedentemente creato
+     * @param dim per sapere la dimensione del vettore di Quiz
+     * @return 
+     */
+ public static Quiz[] loadArrayQuiz(){
 
-        Quiz[] q = new Quiz[dim];
+        Quiz[] q = null;
         
         try{
-        FileInputStream loadFile = new FileInputStream(dir+est);
-        ObjectInputStream loadStream = new ObjectInputStream(loadFile);
+            
+            FileInputStream loadFile = new FileInputStream(dir+est);
+            ObjectInputStream loadStream = new ObjectInputStream(loadFile);
 
-        q= (Quiz[]) loadStream.readObject();
-        
-        loadStream.close();
-        
-        }catch(Exception exc){
-            exc.printStackTrace();
+            q= (Quiz[]) loadStream.readObject();
+
+            loadStream.close();
+
+        }catch(FileNotFoundException ex){
+            return q;
+        }catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
         }
         
         return q;
-    }
-    
-    
-    //=====================================================================
-   /* public static void saveQuiz(Quiz q, int w) throws IOException{
-        try{
-        FileOutputStream saveFile = new FileOutputStream(dir+w+est);
-        ObjectOutputStream save = new ObjectOutputStream(saveFile);
-        
-        save.writeObject(q);
-        save.close();
-        }catch(Exception exc){
-            exc.printStackTrace();
-        }
-        
-    }
-    //======================LOAD QUIZ======================================
-    public static Quiz loadQuiz(int w){
-
-        Quiz q = new Quiz("test","test",null,1);
-        try{
-            FileInputStream saveFile = new FileInputStream(dir+w+est);
-            ObjectInputStream restore = new ObjectInputStream(saveFile);
-
-            //Object obj = restore.readObject(); per un oggetto generico
-            q = (Quiz) restore.readObject();
-            //System.out.println(q.toString());
-
-            restore.close();
-        }catch(Exception exc){
-            exc.printStackTrace();
-        }
-        
-        return q;
-    }
-    */
-    
+}
+/**
+ * 
+ * @param args 
+ */
     public static void main(String[] args) {
         
         final int dim = 10;
@@ -106,13 +90,18 @@ public class ServerStorageManager implements java.io.Serializable {
                 }
                 
                 saveArrayQuiz(arr);
-                arr2 = loadArrayQuiz(dim);
                 
-                for(int i=0; i<dim; i++){
-                    //arr[i] = (Quiz) loadArrayQuiz(dim,i);
-                    System.out.println(arr[i].toString());
+                arr2 = loadArrayQuiz();
+                
+                if(arr2 != null){
+                    for(int i=0; i<dim; i++){
+                        //arr[i] = (Quiz) loadArrayQuiz(dim,i);
+                        System.out.println(arr[i].toString());
+                    }
                 }
-                
+                else{
+                    System.out.println("Array vuoto");
+                }
                 
 
                 //prendo dal file
@@ -123,7 +112,7 @@ public class ServerStorageManager implements java.io.Serializable {
                 }*/
                 
                 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         } 
 
