@@ -12,7 +12,7 @@ import java.io.*;
  */
 public class ServerStorageManager implements java.io.Serializable {
     
-    private static final String dir = "C:\\Users\\Pryze\\Documents\\0Scuola\\asdtesttest\\QuizSaveN_";
+    private static final String dir = "C:\\Users\\info\\Desktop\\asd\\lolfilexd";
     private static final String est = ".txt"; //estensione file
     //private static BufferedReader in;
     
@@ -37,13 +37,14 @@ public class ServerStorageManager implements java.io.Serializable {
  public static Quiz[] loadArrayQuiz(int dim){
 
         Quiz[] q = new Quiz[dim];
-        try{
-        FileInputStream saveFile = new FileInputStream(dir+est);
-        ObjectInputStream restore = new ObjectInputStream(saveFile);
-
-        q= (Quiz[]) restore.readObject();
         
-        restore.close();
+        try{
+        FileInputStream loadFile = new FileInputStream(dir+est);
+        ObjectInputStream loadStream = new ObjectInputStream(loadFile);
+
+        q= (Quiz[]) loadStream.readObject();
+        
+        loadStream.close();
         
         }catch(Exception exc){
             exc.printStackTrace();
@@ -54,7 +55,7 @@ public class ServerStorageManager implements java.io.Serializable {
     
     
     //=====================================================================
-    public static void saveQuiz(Quiz q, int w) throws IOException{
+   /* public static void saveQuiz(Quiz q, int w) throws IOException{
         try{
         FileOutputStream saveFile = new FileOutputStream(dir+w+est);
         ObjectOutputStream save = new ObjectOutputStream(saveFile);
@@ -85,7 +86,7 @@ public class ServerStorageManager implements java.io.Serializable {
         
         return q;
     }
-    
+    */
     
     public static void main(String[] args) {
         
@@ -130,10 +131,11 @@ public class ServerStorageManager implements java.io.Serializable {
 
 
         //prendo dal file
+        /*
         for(int i=0; i<dim; i++){
             arr[i] = (Quiz) loadQuiz(i);
             System.out.println(arr[i].toString());
-        }
+        }*/
         
     }
     
