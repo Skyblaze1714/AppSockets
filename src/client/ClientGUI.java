@@ -548,7 +548,7 @@ public class ClientGUI extends javax.swing.JFrame {
         quizzes = (Quiz[]) test.run(new Message()).content;
         
         //Creaziona di un array di stringhe per la rappresentazione grafica dei quiz
-        String[] quizzesStrings = new String[quizzes.length];
+        final String[] quizzesStrings = new String[quizzes.length];
         
         if(quizzes.length > 0) {
             quizList.setEnabled(true);

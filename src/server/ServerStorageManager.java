@@ -67,9 +67,9 @@ public class ServerStorageManager implements java.io.Serializable {
         
     }
     //======================LOAD QUIZ======================================
-    public Quiz loadQuiz(int w){
+    public static Quiz loadQuiz(int w){
 
-        Quiz q = new Quiz();
+        Quiz q = new Quiz("test","test",null,1);
         try{
             FileInputStream saveFile = new FileInputStream(dir+w+est);
             ObjectInputStream restore = new ObjectInputStream(saveFile);
