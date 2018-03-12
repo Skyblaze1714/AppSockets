@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Per la gestione dell'array degli oggetti Quiz su di un file
  * @author Gunea-Lasagno-Prisecaru
  */
 public class ServerStorageManager implements java.io.Serializable {
@@ -18,8 +19,7 @@ public class ServerStorageManager implements java.io.Serializable {
     private static final String est = ".txt"; //estensione file
     //private static BufferedReader in;
     
-    
-    //=================================================================
+
     /**
      * saveArrayQuiz serve per salvare l'array di oggetti Quiz
      * @param q
@@ -38,23 +38,22 @@ public class ServerStorageManager implements java.io.Serializable {
         }
         
     }
-    //====================================================================
+
     /**
      * LoadArrayQuiz serve per prendere l'arrai di oggetti
      * Quiz dal file precedentemente creato
      * @param dim per sapere la dimensione del vettore di Quiz
      * @return 
      */
- public static Quiz[] loadArrayQuiz(){
+    public static Quiz[] loadArrayQuiz(){
 
-        Quiz[] q = null;
+        Quiz[] q = new Quiz[0];
         
         try{
-            
             FileInputStream loadFile = new FileInputStream(dir+est);
             ObjectInputStream loadStream = new ObjectInputStream(loadFile);
 
-            q= (Quiz[]) loadStream.readObject();
+            q = (Quiz[]) loadStream.readObject();
 
             loadStream.close();
 
@@ -67,7 +66,7 @@ public class ServerStorageManager implements java.io.Serializable {
         return q;
 }
 /**
- * 
+ * test funzionamento metodi
  * @param args 
  */
     public static void main(String[] args) {
@@ -93,7 +92,7 @@ public class ServerStorageManager implements java.io.Serializable {
                 
                 arr2 = loadArrayQuiz();
                 
-                if(arr2 != null){
+                if(arr2.length != 0){
                     for(int i=0; i<dim; i++){
                         //arr[i] = (Quiz) loadArrayQuiz(dim,i);
                         System.out.println(arr[i].toString());
