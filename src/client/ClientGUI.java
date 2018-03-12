@@ -552,22 +552,18 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void quizConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizConfirmActionPerformed
 
-    int currentSelectedQuiz = quizList.getSelectedIndex();
-    if(currentSelectedAnswer != 0){
+        int currentSelectedQuiz = quizList.getSelectedIndex();
+        if(currentSelectedAnswer != 0){
             if(quizzes[currentSelectedQuiz].getCorrectAnswer() == currentSelectedAnswer){
-                correctLabel.setText("Risposta Corretta!"); 
-                correctLabel.setForeground(Color.green);           
-
- 
-
-            }            
-            else
-            {
-            correctLabel.setText("Risposta Errata!");
-            correctLabel.setForeground(Color.red);
+                correctLabel.setText("Risposta Corretta!");
+                correctLabel.setForeground(Color.green);
             }
-    }
-        
+            else{
+                correctLabel.setText("Risposta Errata!");
+                correctLabel.setForeground(Color.red);
+            }
+        }
+
     }//GEN-LAST:event_quizConfirmActionPerformed
 
     
@@ -578,13 +574,14 @@ public class ClientGUI extends javax.swing.JFrame {
         System.out.println("client: refreshing quiz list");
         
         //Richiesta al server della lista dei quiz
-        ClientSocketManager test = new ClientSocketManager();
-        quizzes = (Quiz[]) test.run(new Message()).content;
+        ClientSocketManager socket = new ClientSocketManager();
+        quizzes = (Quiz[]) socket.run(new Message()).content;
         
         //Creaziona di un array di stringhe per la rappresentazione grafica dei quiz
-        final String[] quizzesStrings = new String[quizzes.length];
+        final String[] quizzesStrings;
         
         if(quizzes.length > 0) {
+            quizzesStrings = new String[quizzes.length];
             quizList.setEnabled(true);
             
             for(int i = 0; i < quizzes.length; i++){
@@ -593,8 +590,9 @@ public class ClientGUI extends javax.swing.JFrame {
         }
         else {
             quizList.setEnabled(false);
-            quizzesStrings[0] = "";
-            quizzesStrings[1] = "";
+            quizzesStrings = new String[2];
+            quizzesStrings[0] = "There's no quiz available";
+            quizzesStrings[1] = "Try to refresh later";
         }
         
         //Aggiornamento della lista dei quiz

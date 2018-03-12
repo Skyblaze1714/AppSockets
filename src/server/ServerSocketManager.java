@@ -17,7 +17,7 @@ public class ServerSocketManager {
     //Attributi
     //Porta
     private int port;
-    
+
     //Oggetti per lo stream
     private ObjectOutputStream output;
     private ObjectInputStream input;
@@ -26,10 +26,10 @@ public class ServerSocketManager {
     private ServerSocket server;
     private Socket client;
 
-    
     //Costruttori
     /**
      * Costruisce un oggetto della classe ServerSocketManager
+     *
      * @param port Porta da utilizzare per la trasmissione
      */
     public ServerSocketManager(int port) {
@@ -37,10 +37,11 @@ public class ServerSocketManager {
         start();    //Inizializzazione del server socket
         //run();      //Avvio del server socket
     }
-    
+
     /**
-     * Costruisce un oggetto della classe ServerSocketManager
-     * con una porta di default (1234)
+     * Costruisce un oggetto della classe ServerSocketManager con una porta di
+     * default (1234)
+     *
      * @param port Porta da utilizzare per la trasmissione
      */
     public ServerSocketManager() {
@@ -49,16 +50,16 @@ public class ServerSocketManager {
         //run();      //Avvio del server socket
     }
 
-    
     //Metodi
     /**
-     * Inizializza il socket del server e restituisce true se l'esito è positivo,
-     * o false se negativo
+     * Inizializza il socket del server e restituisce true se l'esito è
+     * positivo, o false se negativo
+     *
      * @return Esito dell'operazione
      */
     private boolean start() {
         //Inizializza il ServerSocket
-        try { 
+        try {
             server = new ServerSocket(port);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -71,11 +72,12 @@ public class ServerSocketManager {
 
     /**
      * Aspetta la connessione di un socket e restituisce la sua richiesta
+     *
      * @return Recieved request
      */
     public Message waitForRequest() {
         Message request = null;
-        
+
         try {
 
             //Preparazione alla trasmissione
@@ -88,12 +90,13 @@ public class ServerSocketManager {
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        
+
         return request;
     }
-    
+
     /**
      * Risponde al socket che ha iniziato la connesione
+     *
      * @param response Riposta da inviare
      */
     public void sendResponse(Message response) {
@@ -110,8 +113,10 @@ public class ServerSocketManager {
     }
 
     /**
-     * Attende la connesione di qualcuno al server e poi inizializza il socket del client
-     * @throws IOException 
+     * Attende la connesione di qualcuno al server e poi inizializza il socket
+     * del client
+     *
+     * @throws IOException
      */
     private void waitForConnections() throws IOException {
         //Attesa di una connesione
@@ -122,38 +127,38 @@ public class ServerSocketManager {
 
     /**
      * Inizializza gli stream di output e input
+     *
      * @throws IOException
      */
     private void setupStreams() throws IOException {
         //Inizializzazione dello stream di output
         output = new ObjectOutputStream(client.getOutputStream());
         output.flush();//Pulizia dello stream di output
-        
+
         //Inizializzazione dello stream di input
         input = new ObjectInputStream(client.getInputStream());
-        
+
         System.out.println("server socket: streams setup completed!");
     }
-    
-    
+
     //TEST - main di prova per il server    
     public static void main(String[] args) {
         ServerSocketManager serverSocket = new ServerSocketManager();
-        
-        while(true) {
+
+        while (true) {
             Message request = serverSocket.waitForRequest();
-            
+
             Message response;
-            
+
             switch (request.method) {
                 case "getQuiz":
                     Quiz[] quizzes = {
                         new Quiz("domanda1", "autore1", makeArray("risp 1", "risp 2", "risp 3", "risp 4"), 1),
                         new Quiz("domanda2", "autore2", makeArray("risp 11", "risp 22", "risp 33", "risp 44"), 2),
                         new Quiz("domanda3", "autore3", makeArray("risp 111", "risp 222", "risp 333", "risp 444"), 3)
-                            
+
                     };
-                    
+
                     response = new Message(quizzes);
                     //response = new Message(new Quiz());
                     break;
@@ -165,13 +170,13 @@ public class ServerSocketManager {
                     response = new Message("outcome", false);
                     break;
             }
-            
+
             serverSocket.sendResponse(response);
         }
     }
-    
+
     //TEST -funzione per creare array di stringhe
-    private static String[] makeArray(String s1, String s2, String s3, String s4){
+    private static String[] makeArray(String s1, String s2, String s3, String s4) {
         String[] array = {s1, s2, s3, s4};
         return array;
     }
