@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ServerStorageManager implements java.io.Serializable {
     
-    private static final String dir = "C:\\Users\\info\\Desktop\\asd\\lolfilexd";
+    private static final String dir = "/home/jcm/lolfilexd";
     private static final String est = ".txt"; //estensione file
     //private static BufferedReader in;
     

@@ -13,8 +13,7 @@ public class Server {
     
     //Attributi
     //Manager
-    private ServerSocketManager serverSocket;
-    private ServerStorageManager storage;
+    private ServerSocketManager socket;
     
     //Dati
     private Quiz[] quizzes;
@@ -22,7 +21,8 @@ public class Server {
     
     //Costruttore
     public Server() {
-        serverSocket = new ServerSocketManager();
+        quizzes = ServerStorageManager.loadArrayQuiz();
+        socket = new ServerSocketManager();
     }
     
     
