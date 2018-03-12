@@ -147,7 +147,12 @@ public class ServerSocketManager {
             
             switch (request.method) {
                 case "getQuiz":
-                    Quiz[] quizzes = { new Quiz("domanda", "autore", null, 1), new Quiz("domanda", "autore", null, 1), new Quiz("domanda", "autore", null, 1) };
+                    Quiz[] quizzes = {
+                        new Quiz("domanda1", "autore1", makeArray("risp 1", "risp 2", "risp 3", "risp 4"), 1),
+                        new Quiz("domanda2", "autore2", makeArray("risp 11", "risp 22", "risp 33", "risp 44"), 2),
+                        new Quiz("domanda3", "autore3", makeArray("risp 111", "risp 222", "risp 333", "risp 444"), 3)
+                            
+                    };
                     
                     response = new Message(quizzes);
                     //response = new Message(new Quiz());
@@ -163,6 +168,12 @@ public class ServerSocketManager {
             
             serverSocket.sendResponse(response);
         }
+    }
+    
+    //TEST -funzione per creare array di stringhe
+    private static String[] makeArray(String s1, String s2, String s3, String s4){
+        String[] array = {s1, s2, s3, s4};
+        return array;
     }
 
 }
