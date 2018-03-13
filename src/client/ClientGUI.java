@@ -20,13 +20,12 @@ public class ClientGUI extends javax.swing.JFrame {
     public ClientGUI() {
         initComponents();
         /*try{
-            refreshQuizzes();
-        } catch(Exception ex){
+         refreshQuizzes();
+         } catch(Exception ex){
             
-        }*/
+         }*/
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -454,18 +453,18 @@ public class ClientGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         refreshQuizzes();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void takeQuizButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeQuizButtonActionPerformed
         int selectedQuiz = quizList.getSelectedIndex();
-        
-        if(selectedQuiz < 0){
+
+        //Caricamento del quiz scelto
+        if (selectedQuiz < 0) {
             takeQuizErrorLabel.setText("Select a quiz first");
-        }
-        else{
+        } else {
             takeQuizErrorLabel.setText("");
             quizAnswerText1.setText(quizzes[selectedQuiz].getAnswers()[0]);
             quizAnswerText2.setText(quizzes[selectedQuiz].getAnswers()[1]);
@@ -476,48 +475,51 @@ public class ClientGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_takeQuizButtonActionPerformed
 
+    
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        if(
+        //Controllo della validità del quiz
+        if (
             !questionText.getText().equals("") &&
             !authorText.getText().equals("") &&
             !answerText1.getText().equals("") &&
             !answerText2.getText().equals("") &&
-            !answerText3.getText().equals("") &&
+            !answerText3.getText().equals("") && 
             !answerText4.getText().equals("") &&
             addQuizCorrectAnswer != 0
-        ){
+        ) {
+            
+            //Creazione dell'array di risposte
             String[] answers = {
                 answerText1.getText(),
                 answerText2.getText(),
                 answerText3.getText(),
                 answerText4.getText()
             };
+            //Creazione del nuovo quiz
             Quiz quiz = new Quiz(
                 questionText.getText(),
                 authorText.getText(),
                 answers,
                 addQuizCorrectAnswer
             );
-            
-            System.out.println(questionText.getText());
-            
-            if(quiz.equals(lastSubmittedQuiz)) {
+
+            //Secondo controllo di validatà del quiz
+            if (quiz.equals(lastSubmittedQuiz)) {
                 submitErrorLabel.setText("You have already submitted this quiz");
                 return;
             }
-            
+
+            //Invio al server del quiz
             new ClientSocketManager().run(new Message("postQuiz", quiz));
-            
+
             lastSubmittedQuiz = quiz;
             submitErrorLabel.setText("");
-            return;
-        }
-        else{
+            
+        } else {
             submitErrorLabel.setText("All the text fields must be filled");
-            return;
         }
     }//GEN-LAST:event_submitButtonActionPerformed
-
+    
     private void answerButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerButton4ActionPerformed
         addQuizCorrectAnswer = 4;
     }//GEN-LAST:event_answerButton4ActionPerformed
@@ -534,6 +536,7 @@ public class ClientGUI extends javax.swing.JFrame {
         addQuizCorrectAnswer = 1;
     }//GEN-LAST:event_answerButton1ActionPerformed
 
+    
     private void quizAnswerButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizAnswerButton1ActionPerformed
         currentSelectedAnswer = 1;
     }//GEN-LAST:event_quizAnswerButton1ActionPerformed
@@ -551,59 +554,61 @@ public class ClientGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_quizAnswerButton4ActionPerformed
 
     private void quizConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizConfirmActionPerformed
-
         int currentSelectedQuiz = quizList.getSelectedIndex();
-        if(currentSelectedAnswer != 0){
-            if(quizzes[currentSelectedQuiz].getCorrectAnswer() == currentSelectedAnswer){
+        
+        //Controllo della risposta
+        if (currentSelectedAnswer != 0) {
+            if (quizzes[currentSelectedQuiz].getCorrectAnswer() == currentSelectedAnswer) {
                 correctLabel.setText("Risposta Corretta!");
                 correctLabel.setForeground(Color.green);
-            }
-            else{
+            } else {
                 correctLabel.setText("Risposta Errata!");
                 correctLabel.setForeground(Color.red);
             }
         }
-
     }//GEN-LAST:event_quizConfirmActionPerformed
 
-    
     /**
      * Aggiorna la lista dei quiz
      */
-    private void refreshQuizzes(){
+    private void refreshQuizzes() {
         System.out.println("client: refreshing quiz list");
-        
+
         //Richiesta al server della lista dei quiz
         ClientSocketManager socket = new ClientSocketManager();
         quizzes = (Quiz[]) socket.run(new Message()).content;
-        
+
         //Creaziona di un array di stringhe per la rappresentazione grafica dei quiz
         final String[] quizzesStrings;
-        
-        if(quizzes.length > 0) {
+
+        if (quizzes.length > 0) {
             quizzesStrings = new String[quizzes.length];
             quizList.setEnabled(true);
-            
-            for(int i = 0; i < quizzes.length; i++){
+
+            for (int i = 0; i < quizzes.length; i++) {
                 quizzesStrings[i] = (i + 1) + " - " + quizzes[i].getQuestion();
             }
-        }
-        else {
+        } else {
             quizList.setEnabled(false);
             quizzesStrings = new String[2];
             quizzesStrings[0] = "There's no quiz available";
             quizzesStrings[1] = "Try to refresh later";
         }
-        
+
         //Aggiornamento della lista dei quiz
         quizList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = quizzesStrings.clone();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public String getElementAt(int i) {
+                return strings[i];
+            }
         });
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -616,13 +621,13 @@ public class ClientGUI extends javax.swing.JFrame {
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
             /*
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-            */
+             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+             if ("Windows".equals(info.getName())) {
+             javax.swing.UIManager.setLookAndFeel(info.getClassName());
+             break;
+             }
+             }
+             */
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -635,13 +640,13 @@ public class ClientGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Crea e mostra la finestra */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClientGUI().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -687,11 +692,13 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JButton takeQuizButton;
     private javax.swing.JLabel takeQuizErrorLabel;
     // End of variables declaration//GEN-END:variables
-    
+
+    //Attributi extra
     private Quiz[] quizzes;
+
     private Quiz lastSubmittedQuiz;
+
     private int addQuizCorrectAnswer = 0;
     private int currentSelectedAnswer = 0;
 
-    
 }

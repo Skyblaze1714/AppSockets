@@ -4,7 +4,6 @@
 package server;
 
 import commons.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -90,31 +89,18 @@ public class Server {
 
     //Main
     public static void main(String[] args) {
-        /*/TEST
-        Quiz[] quizzes1 = {
-            new Quiz("domanda", "autore", null, 1),
-            new Quiz("domanda","autore", null, 1),
-            new Quiz("domanda", "autore", null, 1)
-        };
-        ServerStorageManager.saveArrayQuiz(quizzes1);*/
-
         //Inizializzazione del server
         init();
 
-        /*/TEST
-        if (quizzes.length != 0) {
-            for (int i = 0; i < quizzes.length; i++) {
-                System.out.println(quizzes[i].toString());
-            }
-        } else {
-            System.out.println("Array vuoto");
-        }*/
-        //Ciclo per la ricezione delle richiesquizzes1te al server
+        //Ciclo per la ricezione delle richieste al server
         while (true) {
+            //Attesa di una richiesta da parte del client
             Message request = socket.waitForRequest();
 
+            //Elaborazione della richiesta
             Message response = elaborateRequest(request);
 
+            //Invio della risposta
             socket.sendResponse(response);
         }
     }

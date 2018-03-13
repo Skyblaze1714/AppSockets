@@ -1,5 +1,5 @@
 /*
- * Classe per la rappresentazione di quiz come oggetti
+ * Classe per la rappresentazione dei quiz come oggetti
  */
 package commons;
 
@@ -19,15 +19,15 @@ public class Quiz implements Serializable {
     private String[] answers;
     private int correctAnswer;
 
+    
     //Costruttore
     /**
      * Costruisce un oggetto della classe Quiz
      *
-     * @param title Titolo
-     * @param question Descrizione
-     * @param author Autore
-     * @param answers Risposte
-     * @param correctAnswer Risposta corretta
+     * @param question Domanda del quiz
+     * @param author Autore del quiz
+     * @param answers Risposte del quiz
+     * @param correctAnswer Risposta corretta del quiz
      */
     public Quiz(String question, String author, String[] answers, int correctAnswer) {
         this.question = question;
@@ -36,11 +36,12 @@ public class Quiz implements Serializable {
         this.correctAnswer = correctAnswer;
     }
 
+    
     //Getters e setters
     /**
      * Restituisce l'autore del quiz
      *
-     * @return Autore delm quiz
+     * @return Autore del quiz
      */
     public String getAuthor() {
         return author;
@@ -58,10 +59,10 @@ public class Quiz implements Serializable {
     /**
      * Sostituisce la domanda del quiz
      *
-     * @param description Nuova domanda del quiz
+     * @param question Nuova domanda del quiz
      */
-    public void setDescription(String description) {
-        this.question = description;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     /**
@@ -79,13 +80,13 @@ public class Quiz implements Serializable {
      * @param answers Array con le nuove risposte del quiz
      */
     public void setAnswers(String[] answers) {
-        this.answers = (answers == null) ? null : answers.clone();
+        this.answers = (answers == null) ? new String[0] : answers.clone();
     }
 
     /**
      * Restituisce la risposta corretta
      *
-     * @return Indice della risposta corretta (1 o più)
+     * @return Indice della risposta corretta 1
      */
     public int getCorrectAnswer() {
         return correctAnswer;
@@ -94,12 +95,13 @@ public class Quiz implements Serializable {
     /**
      * Sostituisce la risposta corretta
      *
-     * @param correctAnswer Indice della nuova risposta corretta (1 o più)
+     * @param correctAnswer Indice della nuova risposta corretta 1
      */
     public void setCorrectAnswer(int correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
+    
     //Metodi
     /**
      * Restituisce una stringa contenente i dettagli riguardanti l'oggetto
