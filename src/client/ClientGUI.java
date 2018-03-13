@@ -19,11 +19,10 @@ public class ClientGUI extends javax.swing.JFrame {
      */
     public ClientGUI() {
         initComponents();
-        /*try{
-         refreshQuizzes();
-         } catch(Exception ex){
-            
-         }*/
+        
+        refreshQuizzes();
+        
+        TabbedPane.setEnabledAt(2, false);
     }
 
     /**
@@ -61,24 +60,31 @@ public class ClientGUI extends javax.swing.JFrame {
         answerText4 = new javax.swing.JTextField();
         submitButton = new javax.swing.JButton();
         submitErrorLabel = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         quizTab = new javax.swing.JPanel();
         quizLabel = new javax.swing.JLabel();
         quizQuestion = new javax.swing.JLabel();
         quizAuthor = new javax.swing.JLabel();
         quizAnswerButton1 = new javax.swing.JRadioButton();
-        quizAnswerText1 = new javax.swing.JTextField();
+        quizAnswerLabel1 = new javax.swing.JLabel();
         quizAnswerButton2 = new javax.swing.JRadioButton();
-        quizAnswerText2 = new javax.swing.JTextField();
+        quizAnswerLabel2 = new javax.swing.JLabel();
         quizAnswerButton3 = new javax.swing.JRadioButton();
-        quizAnswerText3 = new javax.swing.JTextField();
+        quizAnswerLabel3 = new javax.swing.JLabel();
+        quizAnswerLabel4 = new javax.swing.JLabel();
         quizAnswerButton4 = new javax.swing.JRadioButton();
-        quizAnswerText4 = new javax.swing.JTextField();
         quizConfirm = new javax.swing.JButton();
         correctLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quiz Share");
+        setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        setLocation(new java.awt.Point(500, 250));
+        setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(442, 325));
         setMinimumSize(new java.awt.Dimension(415, 400));
+        setResizable(false);
+
+        TabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         home.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -121,7 +127,7 @@ public class ClientGUI extends javax.swing.JFrame {
                         .addComponent(takeQuizButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(takeQuizErrorLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
                         .addComponent(refreshButton)))
                 .addContainerGap())
         );
@@ -134,7 +140,7 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addComponent(takeQuizButton)
                     .addComponent(takeQuizErrorLabel))
                 .addGap(12, 12, 12)
-                .addComponent(quizListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addComponent(quizListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -163,7 +169,6 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        answerText1.setText("Risposta 1");
         answerText1.setToolTipText("");
 
         answerButton2.setBackground(new java.awt.Color(255, 255, 255));
@@ -174,8 +179,6 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        answerText2.setText("Risposta 2");
-
         answerButton3.setBackground(new java.awt.Color(255, 255, 255));
         addQuizAnswers.add(answerButton3);
         answerButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -184,8 +187,6 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        answerText3.setText("Risposta 3");
-
         answerButton4.setBackground(new java.awt.Color(255, 255, 255));
         addQuizAnswers.add(answerButton4);
         answerButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -193,8 +194,6 @@ public class ClientGUI extends javax.swing.JFrame {
                 answerButton4ActionPerformed(evt);
             }
         });
-
-        answerText4.setText("Risposta 4");
 
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +243,7 @@ public class ClientGUI extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(answerText4)))
                     .addComponent(answersLabel))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         addQuizTabLayout.setVerticalGroup(
             addQuizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +280,7 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addGroup(addQuizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitButton)
                     .addComponent(submitErrorLabel))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("Add Quiz!", addQuizTab);
@@ -289,11 +288,13 @@ public class ClientGUI extends javax.swing.JFrame {
         quizTab.setBackground(new java.awt.Color(255, 255, 255));
 
         quizLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        quizLabel.setText("answer to the quiz");
+        quizLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        quizLabel.setText("Answer to the quiz");
 
         quizQuestion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         quizQuestion.setText("(domanda) ");
 
+        quizAuthor.setForeground(new java.awt.Color(102, 102, 102));
         quizAuthor.setText("Made by ");
 
         quizAnswerButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -304,9 +305,6 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        quizAnswerText1.setText("Risposta 1");
-        quizAnswerText1.setToolTipText("");
-
         quizAnswerButton2.setBackground(new java.awt.Color(255, 255, 255));
         quizAnswers.add(quizAnswerButton2);
         quizAnswerButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -314,8 +312,6 @@ public class ClientGUI extends javax.swing.JFrame {
                 quizAnswerButton2ActionPerformed(evt);
             }
         });
-
-        quizAnswerText2.setText("Risposta 2");
 
         quizAnswerButton3.setBackground(new java.awt.Color(255, 255, 255));
         quizAnswers.add(quizAnswerButton3);
@@ -325,8 +321,6 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        quizAnswerText3.setText("Risposta 3");
-
         quizAnswerButton4.setBackground(new java.awt.Color(255, 255, 255));
         quizAnswers.add(quizAnswerButton4);
         quizAnswerButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -334,8 +328,6 @@ public class ClientGUI extends javax.swing.JFrame {
                 quizAnswerButton4ActionPerformed(evt);
             }
         });
-
-        quizAnswerText4.setText("Risposta 4");
 
         quizConfirm.setText("Confirm");
         quizConfirm.addActionListener(new java.awt.event.ActionListener() {
@@ -350,47 +342,38 @@ public class ClientGUI extends javax.swing.JFrame {
         quizTab.setLayout(quizTabLayout);
         quizTabLayout.setHorizontalGroup(
             quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(quizLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(quizQuestion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(quizTabLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(quizTabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(quizAuthor))
-                    .addGroup(quizTabLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
                         .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quizTabLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quizTabLayout.createSequentialGroup()
-                                        .addComponent(correctLabel)
-                                        .addGap(109, 109, 109))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quizTabLayout.createSequentialGroup()
-                                        .addComponent(quizConfirm)
-                                        .addGap(117, 117, 117))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, quizTabLayout.createSequentialGroup()
-                                    .addComponent(quizAnswerButton2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(quizAnswerText2))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, quizTabLayout.createSequentialGroup()
-                                    .addComponent(quizAnswerButton3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(quizAnswerText3))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, quizTabLayout.createSequentialGroup()
-                                    .addComponent(quizAnswerButton4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(quizAnswerText4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, quizTabLayout.createSequentialGroup()
-                                    .addComponent(quizAnswerButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(quizAnswerText1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(quizTabLayout.createSequentialGroup()
+                                .addComponent(quizConfirm)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(correctLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(quizTabLayout.createSequentialGroup()
+                                .addComponent(quizAnswerButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(quizAnswerLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(quizTabLayout.createSequentialGroup()
+                                .addComponent(quizAnswerButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(quizAnswerLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(quizTabLayout.createSequentialGroup()
+                                .addComponent(quizAnswerButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(quizAnswerLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(quizTabLayout.createSequentialGroup()
+                                .addComponent(quizAnswerButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(quizAnswerLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(quizTabLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(quizLabel))
-                    .addGroup(quizTabLayout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(quizQuestion)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addComponent(quizAuthor)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         quizTabLayout.setVerticalGroup(
             quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,45 +382,34 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addComponent(quizLabel)
                 .addGap(27, 27, 27)
                 .addComponent(quizQuestion)
-                .addGap(18, 18, 18)
-                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quizAnswerButton1)
-                    .addComponent(quizAnswerText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quizAnswerButton2)
-                    .addComponent(quizAnswerText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quizAnswerButton3)
-                    .addComponent(quizAnswerText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quizAnswerButton4)
-                    .addComponent(quizAnswerText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(quizConfirm)
-                .addGap(15, 15, 15)
-                .addComponent(correctLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quizAnswerLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quizAnswerButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quizAnswerLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quizAnswerButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quizAnswerLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quizAnswerButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quizAnswerLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quizAnswerButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(quizConfirm)
+                    .addComponent(correctLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(quizAuthor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(77, 77, 77))
         );
 
         correctLabel.setText("");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(quizTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(quizTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        TabbedPane.addTab("Quiz", jPanel1);
+        TabbedPane.addTab("Do Quiz!", quizTab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -447,7 +419,7 @@ public class ClientGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabbedPane)
+            .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
         );
 
         pack();
@@ -465,13 +437,26 @@ public class ClientGUI extends javax.swing.JFrame {
         if (selectedQuiz < 0) {
             takeQuizErrorLabel.setText("Select a quiz first");
         } else {
+            //Abilitazione della scheda dei quiz
+            
+            
             takeQuizErrorLabel.setText("");
-            quizAnswerText1.setText(quizzes[selectedQuiz].getAnswers()[0]);
-            quizAnswerText2.setText(quizzes[selectedQuiz].getAnswers()[1]);
-            quizAnswerText3.setText(quizzes[selectedQuiz].getAnswers()[2]);
-            quizAnswerText4.setText(quizzes[selectedQuiz].getAnswers()[3]);
+            
+            //Caricamento del quiz sulla GUI
+            TabbedPane.setEnabledAt(2, true);
+            TabbedPane.setSelectedIndex(2);
+            quizAnswerButton1.setEnabled(true);
+            quizAnswerLabel1.setText(quizzes[selectedQuiz].getAnswers()[0]);
+            quizAnswerButton2.setEnabled(true);
+            quizAnswerLabel2.setText(quizzes[selectedQuiz].getAnswers()[1]);
+            quizAnswerButton3.setEnabled(true);
+            quizAnswerLabel3.setText(quizzes[selectedQuiz].getAnswers()[2]);
+            quizAnswerButton4.setEnabled(true);
+            quizAnswerLabel4.setText(quizzes[selectedQuiz].getAnswers()[3]);
             quizAuthor.setText("Made By " + quizzes[selectedQuiz].getAuthor());
             quizQuestion.setText(quizzes[selectedQuiz].getQuestion());
+            quizConfirm.setEnabled(true);
+            correctLabel.setText("");
         }
     }//GEN-LAST:event_takeQuizButtonActionPerformed
 
@@ -512,8 +497,14 @@ public class ClientGUI extends javax.swing.JFrame {
             //Invio al server del quiz
             new ClientSocketManager().run(new Message("postQuiz", quiz));
 
+            //Preparazione per il prossimo invio
             lastSubmittedQuiz = quiz;
             submitErrorLabel.setText("");
+            questionText.setText("");
+            answerText1.setText("");
+            answerText2.setText("");
+            answerText3.setText("");
+            answerText4.setText("");
             
         } else {
             submitErrorLabel.setText("All the text fields must be filled");
@@ -541,6 +532,26 @@ public class ClientGUI extends javax.swing.JFrame {
         currentSelectedAnswer = 1;
     }//GEN-LAST:event_quizAnswerButton1ActionPerformed
 
+    private void quizConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizConfirmActionPerformed
+        int currentSelectedQuiz = quizList.getSelectedIndex();
+        
+        //Controllo della risposta
+        if (currentSelectedAnswer != 0) {
+            if (quizzes[currentSelectedQuiz].getCorrectAnswer() == currentSelectedAnswer) {
+                correctLabel.setText("Risposta Corretta!");
+                correctLabel.setForeground(Color.green);
+                quizAnswerButton1.setEnabled(false);
+                quizAnswerButton2.setEnabled(false);
+                quizAnswerButton3.setEnabled(false);
+                quizAnswerButton4.setEnabled(false);
+                quizConfirm.setEnabled(false);
+            } else {
+                correctLabel.setText("Risposta Errata!");
+                correctLabel.setForeground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_quizConfirmActionPerformed
+
     private void quizAnswerButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizAnswerButton2ActionPerformed
         currentSelectedAnswer = 2;
     }//GEN-LAST:event_quizAnswerButton2ActionPerformed
@@ -552,21 +563,6 @@ public class ClientGUI extends javax.swing.JFrame {
     private void quizAnswerButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizAnswerButton4ActionPerformed
         currentSelectedAnswer = 4;
     }//GEN-LAST:event_quizAnswerButton4ActionPerformed
-
-    private void quizConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quizConfirmActionPerformed
-        int currentSelectedQuiz = quizList.getSelectedIndex();
-        
-        //Controllo della risposta
-        if (currentSelectedAnswer != 0) {
-            if (quizzes[currentSelectedQuiz].getCorrectAnswer() == currentSelectedAnswer) {
-                correctLabel.setText("Risposta Corretta!");
-                correctLabel.setForeground(Color.green);
-            } else {
-                correctLabel.setText("Risposta Errata!");
-                correctLabel.setForeground(Color.red);
-            }
-        }
-    }//GEN-LAST:event_quizConfirmActionPerformed
 
     /**
      * Aggiorna la lista dei quiz
@@ -667,17 +663,16 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JLabel correctLabel;
     private javax.swing.JPanel home;
     private javax.swing.JLabel instructionsLabel;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JTextField questionText;
     private javax.swing.JRadioButton quizAnswerButton1;
     private javax.swing.JRadioButton quizAnswerButton2;
     private javax.swing.JRadioButton quizAnswerButton3;
     private javax.swing.JRadioButton quizAnswerButton4;
-    private javax.swing.JTextField quizAnswerText1;
-    private javax.swing.JTextField quizAnswerText2;
-    private javax.swing.JTextField quizAnswerText3;
-    private javax.swing.JTextField quizAnswerText4;
+    private javax.swing.JLabel quizAnswerLabel1;
+    private javax.swing.JLabel quizAnswerLabel2;
+    private javax.swing.JLabel quizAnswerLabel3;
+    private javax.swing.JLabel quizAnswerLabel4;
     private javax.swing.ButtonGroup quizAnswers;
     private javax.swing.JLabel quizAuthor;
     private javax.swing.JButton quizConfirm;

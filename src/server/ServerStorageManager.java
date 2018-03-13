@@ -58,7 +58,12 @@ public class ServerStorageManager implements java.io.Serializable {
             ObjectInputStream loadStream = new ObjectInputStream(loadFile);
 
             //Caricamento dei quiz sull'array
-            quizzes = (Quiz[]) loadStream.readObject();
+            try {
+                quizzes = (Quiz[]) loadStream.readObject();
+            } catch(InvalidClassException ex){
+                System.out.println("server storage: ivalid class of the quiz array, loading an empty array");
+            }
+            
 
             //Chiusura del file
             loadStream.close();
