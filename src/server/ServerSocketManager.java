@@ -26,6 +26,7 @@ public class ServerSocketManager {
     private ServerSocket server;
     private Socket client;
 
+    
     //Costruttori
     /**
      * Costruisce un oggetto della classe ServerSocketManager
@@ -50,6 +51,7 @@ public class ServerSocketManager {
         //run();      //Avvio del server socket
     }
 
+    
     //Metodi
     /**
      * Inizializza il socket del server e restituisce true se l'esito è
@@ -140,45 +142,5 @@ public class ServerSocketManager {
 
         System.out.println("server socket: streams setup completed!");
     }
-
-    //TEST - main di prova per il server    
-    public static void main(String[] args) {
-        ServerSocketManager serverSocket = new ServerSocketManager();
-
-        while (true) {
-            Message request = serverSocket.waitForRequest();
-
-            Message response;
-
-            switch (request.method) {
-                case "getQuiz":
-                    Quiz[] quizzes = {
-                        new Quiz("domanda1", "autore1", makeArray("risp 1", "risp 2", "risp 3", "risp 4"), 1),
-                        new Quiz("domanda2", "autore2", makeArray("risp 11", "risp 22", "risp 33", "risp 44"), 2),
-                        new Quiz("domanda3", "autore3", makeArray("risp 111", "risp 222", "risp 333", "risp 444"), 3)
-
-                    };
-
-                    response = new Message(quizzes);
-                    //response = new Message(new Quiz());
-                    break;
-                case "postQuiz":
-                    System.out.println("server socket: recivied a quiz = " + request.content.toString());
-                    response = new Message("outcome", true);
-                    break;
-                default:
-                    response = new Message("outcome", false);
-                    break;
-            }
-
-            serverSocket.sendResponse(response);
-        }
-    }
-
-    //TEST -funzione per creare array di stringhe
-    private static String[] makeArray(String s1, String s2, String s3, String s4) {
-        String[] array = {s1, s2, s3, s4};
-        return array;
-    }
-
+    
 }
