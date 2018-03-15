@@ -40,7 +40,7 @@ public class ClientGUI extends javax.swing.JFrame {
         home = new javax.swing.JPanel();
         refreshButton = new javax.swing.JButton();
         quizListContainer = new javax.swing.JScrollPane();
-        quizList = new javax.swing.JList<>();
+        quizList = new javax.swing.JList<String>();
         takeQuizButton = new javax.swing.JButton();
         takeQuizErrorLabel = new javax.swing.JLabel();
         addQuizTab = new javax.swing.JPanel();
@@ -78,7 +78,6 @@ public class ClientGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quiz Share");
         setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        setLocation(new java.awt.Point(500, 250));
         setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(442, 325));
         setMinimumSize(new java.awt.Dimension(415, 400));
@@ -97,10 +96,10 @@ public class ClientGUI extends javax.swing.JFrame {
 
         quizListContainer.setBorder(null);
 
-        quizList.setModel(new javax.swing.AbstractListModel<String>() {
+        quizList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Theres no quiz available", "Try to refresh" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         quizList.setEnabled(false);
         quizListContainer.setViewportView(quizList);
@@ -140,7 +139,7 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addComponent(takeQuizButton)
                     .addComponent(takeQuizErrorLabel))
                 .addGap(12, 12, 12)
-                .addComponent(quizListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(quizListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -280,7 +279,7 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addGroup(addQuizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitButton)
                     .addComponent(submitErrorLabel))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("Add Quiz!", addQuizTab);
@@ -398,7 +397,7 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(quizAnswerLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(quizAnswerButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(quizTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quizConfirm)
                     .addComponent(correctLabel))
@@ -419,7 +418,7 @@ public class ClientGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+            .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
         );
 
         pack();
@@ -496,6 +495,9 @@ public class ClientGUI extends javax.swing.JFrame {
 
             //Invio al server del quiz
             new ClientSocketManager().run(new Message("postQuiz", quiz));
+            
+            //Aggiornamento della lista dei quiz
+            refreshQuizzes();
 
             //Preparazione per il prossimo invio
             lastSubmittedQuiz = quiz;

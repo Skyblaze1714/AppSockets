@@ -42,8 +42,6 @@ public class ServerSocketManager {
     /**
      * Costruisce un oggetto della classe ServerSocketManager con una porta di
      * default (1234)
-     *
-     * @param port Porta da utilizzare per la trasmissione
      */
     public ServerSocketManager() {
         this.port = 1234;
