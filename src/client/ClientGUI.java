@@ -40,7 +40,7 @@ public class ClientGUI extends javax.swing.JFrame {
         home = new javax.swing.JPanel();
         refreshButton = new javax.swing.JButton();
         quizListContainer = new javax.swing.JScrollPane();
-        quizList = new javax.swing.JList<String>();
+        quizList = new javax.swing.JList<>();
         takeQuizButton = new javax.swing.JButton();
         takeQuizErrorLabel = new javax.swing.JLabel();
         addQuizTab = new javax.swing.JPanel();
@@ -96,10 +96,10 @@ public class ClientGUI extends javax.swing.JFrame {
 
         quizListContainer.setBorder(null);
 
-        quizList.setModel(new javax.swing.AbstractListModel() {
+        quizList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Theres no quiz available", "Try to refresh" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         quizList.setEnabled(false);
         quizListContainer.setViewportView(quizList);

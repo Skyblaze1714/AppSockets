@@ -81,37 +81,4 @@ public class ServerStorageManager implements java.io.Serializable {
         return quizzes;
     }
 
-    /**
-     * TEST - verifica funzionamento metodi
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-
-        final int dim = 10;
-        String[] asd = new String[2];
-        asd[0] = "hi";
-        asd[1] = "hello";
-
-        Quiz[] arr = new Quiz[dim];
-        Quiz[] arr2 = new Quiz[dim];
-
-        for (int i = 0; i < dim; i++) {
-            arr[i] = new Quiz("descrizione " + i, "aut " + i, asd, i);
-        }
-
-        saveArrayQuiz(arr);
-
-        arr2 = loadArrayQuiz();
-
-        if (arr2.length != 0) {
-            for (int i = 0; i < dim; i++) {
-                System.out.println(arr[i].toString());
-            }
-        } else {
-            System.out.println("Array vuoto");
-        }
-
-    }
-
 }
