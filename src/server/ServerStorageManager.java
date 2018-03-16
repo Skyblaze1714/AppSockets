@@ -12,7 +12,7 @@ import java.io.*;
  *
  * @author Gunea-Lasagno-Prisecaru
  */
-public class ServerStorageManager implements java.io.Serializable {
+public class ServerStorageManager {
 
     private static final String dir = "quizArray";
     private static final String ext = ".txt"; //estensione file
