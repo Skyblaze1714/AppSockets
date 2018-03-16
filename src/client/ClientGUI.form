@@ -511,7 +511,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Made by "/>
+                <Property name="text" type="java.lang.String" value="Made by (autore)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="quizAnswerButton1">
@@ -528,6 +528,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="quizAnswerLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="(risposta)"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="quizAnswerButton2">
               <Properties>
@@ -543,6 +546,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="quizAnswerLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="(risposta)"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="quizAnswerButton3">
               <Properties>
@@ -558,8 +564,14 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="quizAnswerLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="(risposta)"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="quizAnswerLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="(risposta)"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="quizAnswerButton4">
               <Properties>

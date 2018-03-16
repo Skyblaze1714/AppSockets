@@ -294,7 +294,7 @@ public class ClientGUI extends javax.swing.JFrame {
         quizQuestion.setText("(domanda) ");
 
         quizAuthor.setForeground(new java.awt.Color(102, 102, 102));
-        quizAuthor.setText("Made by ");
+        quizAuthor.setText("Made by (autore)");
 
         quizAnswerButton1.setBackground(new java.awt.Color(255, 255, 255));
         quizAnswers.add(quizAnswerButton1);
@@ -304,6 +304,8 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
+        quizAnswerLabel1.setText("(risposta)");
+
         quizAnswerButton2.setBackground(new java.awt.Color(255, 255, 255));
         quizAnswers.add(quizAnswerButton2);
         quizAnswerButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -312,6 +314,8 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
+        quizAnswerLabel2.setText("(risposta)");
+
         quizAnswerButton3.setBackground(new java.awt.Color(255, 255, 255));
         quizAnswers.add(quizAnswerButton3);
         quizAnswerButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -319,6 +323,10 @@ public class ClientGUI extends javax.swing.JFrame {
                 quizAnswerButton3ActionPerformed(evt);
             }
         });
+
+        quizAnswerLabel3.setText("(risposta)");
+
+        quizAnswerLabel4.setText("(risposta)");
 
         quizAnswerButton4.setBackground(new java.awt.Color(255, 255, 255));
         quizAnswers.add(quizAnswerButton4);
